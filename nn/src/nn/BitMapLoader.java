@@ -9,13 +9,24 @@ import javax.imageio.ImageIO;
 public class BitMapLoader
 	{
 
-		int[][] bitmapArray = new int[28][28];
+		private int[][] bitmapArray = new int[28][28];
 		String BMPFileName;
 
 		public BitMapLoader(String BMPFileName)
 			{
 				super();
 				this.BMPFileName = BMPFileName;
+			}
+
+		public int getValue(int x, int y)
+			{
+				return bitmapArray[x][y];
+			}
+
+		public double getActivationValue(int x, int y)
+			{
+				return (this.getValue(x, y) / 100.0);
+
 			}
 
 		public void loadBMPImage() throws IOException
@@ -27,26 +38,27 @@ public class BitMapLoader
 						for (int yPixel = 0; yPixel < image.getHeight(); yPixel++)
 							{
 								int color = image.getRGB(xPixel, yPixel);
+//								System.out.println(" " + color);
 
 								if (color == Color.white.getRGB())
 									{
 										bitmapArray[xPixel][yPixel] = 0; // ?
-										System.out.println(" " + "white");
+//										System.out.println(" " + "white");
 									}
 								if (color == Color.gray.getRGB())
 									{
 										bitmapArray[xPixel][yPixel] = 50;
-										System.out.println(" " + "gray");
+//										System.out.println(" " + "gray");
 									}
 								if (color == Color.darkGray.getRGB())
 									{
 										bitmapArray[xPixel][yPixel] = 75;
-										System.out.println(" " + "darkgray");
+//										System.out.println(" " + "darkgray");
 									}
 								if (color == Color.black.getRGB())
 									{
 										bitmapArray[xPixel][yPixel] = 100;
-										System.out.println(" " + "black");
+//										System.out.println(" " + "black");
 									}
 							}
 					}
